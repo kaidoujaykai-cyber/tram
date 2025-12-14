@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Thành viên</title>
+<style>   * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+        }
+
+        /* 2. Header & Navigation (Menu điều hướng) */
+        header {
+            background-color: #2c3e50; /* Màu xanh đậm chủ đạo */
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            cursor: pointer; /* Thêm dòng này để giả lập link trong bản xem trước */
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e74c3c; /* Màu đỏ nổi bật khi hover */
+        }
+
+        /* 3. Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 40px;
+        }
+
+        /* 4. Nội dung chính (Layout chung) */
+        main {
+            padding: 40px 0;
+            min-height: 400px; /* Đảm bảo footer không bị đẩy lên giữa màn hình */
+        }
+
+        h2.section-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e74c3c;
+            display: inline-block;
+            padding-bottom: 10px;
+            /* Căn giữa tiêu đề */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* --- STYLES RIÊNG CHO TỪNG TRANG --- */
+
+        /* TRANG CHỦ (index.html) */
+        .hero-banner {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .class-photo img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-style: italic;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* TRANG THÀNH VIÊN (thanhvien.html) */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd; /* Màu nền placeholder */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+        
+        /* Chỉ dùng để hiện ảnh thật nếu có, ở đây dùng background giả lập */
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 15px;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* TRANG HOẠT ĐỘNG (hoatdong.html) */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .activity-item {
+            background: white;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .activity-img {
+            width: 300px;
+            background-color: #ddd;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .activity-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .activity-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .activity-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            .activity-item {
+                flex-direction: column;
+            }
+            .activity-img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        
+        /* Style riêng cho bản Preview này để ẩn hiện các trang */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }</style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>🏫 Lớp 12A1 - THPT Minh Hòa</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="trang-chủ.html" >TrangChủ</a></li>
+                    <li><a href="thành-viên.html" class="active">Thành Viên</a></li>
+                    <li><a href="hoạt-động.html">Hoạt Động</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <!-- TRANG 2: THÀNH VIÊN (Nội dung của thanhvien.html) -->
+            <h2 class="section-title">Danh Sách Thành Viên</h2>
+            <div class="members-grid">
+                
+                <!-- Thành viên 1 -->
+                <div class="member-card">
+                    <div class="member-img">
+                         <img src="https://i.postimg.cc/mrdt0VPM/image.png" alt="Avatar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Bùi Đặng Hạ Vy</h3>
+                        <p class="member-role">⭐ Lớp Trưởng/Bí thư</p>
+                    </div>
+                </div>
+
+                <!-- Thành viên 2 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="https://i.postimg.cc/hvCnG3q0/image.png" alt="Avatar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Đinh Ngọc Trang Linh</h3>
+                        <p class="member-role">✒️ Tổ Trưởng tổ 1/Lớp Phó Học Tập</p>
+                    </div>
+                </div>
+
+                <!-- Thành viên 3 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="https://i.postimg.cc/Y9RKXyjk/image.png" alt="Avatar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Bùi Thế Duy</h3>
+                        <p class="member-role">Tổ Trưởng tổ 2</p>
+                    </div>
+                </div>
+
+                <!-- Thành viên 4 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="https://i.postimg.cc/0NCBxKxs/image.png" alt="Avatar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Trần Trí Dũng</h3>
+                        <p class="member-role">Tổ Trưởng tổ 3</p>
+                    </div>
+                </div>
+
+                <!-- Thành viên 5 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="https://i.postimg.cc/Pr8VJRhQ/image.png" alt="Avatar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Trần Thị Như Phúc</h3>
+                        <p class="member-role">Tổ Trưởng tổ 4</p>
+                    </div>
+                </div>
+
+                <!-- Thành viên 6 -->
+                <div class="member-card">
+                    <div class="member-img">
+                        <img src="https://i.postimg.cc/9MMJhxJH/image.png" alt="Avatar">
+                    </div>
+                    <div class="member-info">
+                        <h3 class="member-name">Đỗ Thị Ngọc Trâm</h3>
+                        <p class="member-role">Thành viên</p>
+                    </div>
+                </div>
+
+            </div>
+    </main>
+</body>
+</html>
