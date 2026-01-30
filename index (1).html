@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../style.css">
+    <title>Trang chủ</title>
+<style>   * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f6;
+        }
+
+        /* 2. Header & Navigation (Menu điều hướng) */
+        header {
+            background-color: #2c3e50; /* Màu xanh đậm chủ đạo */
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.3s;
+            cursor: pointer; /* Thêm dòng này để giả lập link trong bản xem trước */
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            background-color: #e74c3c; /* Màu đỏ nổi bật khi hover */
+        }
+
+        /* 3. Footer */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: 40px;
+        }
+
+        /* 4. Nội dung chính (Layout chung) */
+        main {
+            padding: 40px 0;
+            min-height: 400px; /* Đảm bảo footer không bị đẩy lên giữa màn hình */
+        }
+
+        h2.section-title {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-transform: uppercase;
+            border-bottom: 2px solid #e74c3c;
+            display: inline-block;
+            padding-bottom: 10px;
+            /* Căn giữa tiêu đề */
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* --- STYLES RIÊNG CHO TỪNG TRANG --- */
+
+        /* TRANG CHỦ (index.html) */
+        .hero-banner {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .class-photo img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .slogan {
+            font-size: 1.5rem;
+            color: #e74c3c;
+            font-style: italic;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        /* TRANG THÀNH VIÊN (thanhvien.html) */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .member-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .member-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 250px;
+            background-color: #ddd; /* Màu nền placeholder */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #777;
+        }
+        
+        /* Chỉ dùng để hiện ảnh thật nếu có, ở đây dùng background giả lập */
+        .member-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .member-info {
+            padding: 15px;
+        }
+
+        .member-name {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .member-role {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        /* TRANG HOẠT ĐỘNG (hoatdong.html) */
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .activity-item {
+            background: white;
+            display: flex;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .activity-img {
+            width: 300px;
+            background-color: #ddd;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .activity-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .activity-content {
+            padding: 20px;
+            flex-grow: 1;
+        }
+
+        .activity-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .activity-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        /* Responsive Mobile */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            nav ul {
+                margin-top: 15px;
+            }
+            .activity-item {
+                flex-direction: column;
+            }
+            .activity-img {
+                width: 100%;
+                height: 200px;
+            }
+        }
+        
+        /* Style riêng cho bản Preview này để ẩn hiện các trang */
+        .page-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        .page-section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+/* --- STYLE CHO PHẦN MEDIA --- */
+.media-section {
+    margin-top: 50px; /* Tạo khoảng cách với phần trên */
+}
+
+.media-card {
+    background-color: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    max-width: 800px; /* Giới hạn chiều rộng để nhìn gọn hơn */
+    margin: 0 auto;   /* Căn giữa */
+    text-align: center;
+}
+
+.media-item h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+/* Style cho Video */
+.media-item video {
+    width: 100%;       /* Video tự co giãn theo màn hình */
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    background-color: #000; /* Nền đen khi video chưa load */
+}
+
+/* Style cho Audio */
+.media-item audio {
+    width: 100%;
+    max-width: 500px; /* Không để thanh audio quá dài */
+    height: 40px;
+    margin-top: 10px;
+}
+
+.media-caption {
+    font-style: italic;
+    color: #7f8c8d;
+    margin-top: 10px;
+    font-size: 0.95rem;
+}
+
+.media-divider {
+    border: 0;
+    border-top: 1px dashed #ccc; /* Đường kẻ đứt nét ngăn cách */
+    margin: 30px 0;
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <h1>🏫 Lớp 12A1 - THPT Minh Hòa</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Trang Chủ</a></li>
+                    <li><a href="thành-viên.html">Thành Viên</a></li>
+                    <li><a href="hoạt-động.html">Hoạt Động</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <!-- TRANG 1: TRANG CHỦ (Nội dung của index.html) -->
+            <h2 class="section-title">Giới Thiệu Chung</h2>
+            <div class="hero-banner">
+                <div class="class-photo">
+                    <img src="https://i.postimg.cc/B6TDR2G8/image.png" alt="Ảnh tập thể lớp 12A1">
+                </div>
+                <div class="slogan">
+                    "A1 mãi đỉnh- 12A1 Never Die"
+                </div>
+                <p class="intro-text">
+                    Chào mừng đến với ngôi nhà chung 12A1. Đây là nơi quy tụ 42 gương mặt ưu tú, 
+                    năng động và sáng tạo. Website này lưu giữ những kỷ niệm đẹp nhất của chúng mình 
+                    dưới mái trường THPT Minh Hòa thân yêu.
+                </p>
+            </div>
+            <div class="media-section">
+    <h2 class="section-title">THÔNG TIN KHÁC</h2>
+    
+    <div class="media-card">
+        <div class="media-item">
+            <h3>🎬 Video</h3>
+            <video controls poster="hinh-nen-cho-video.jpg">
+                <source src="videotram.mp4" type="video/mp4">
+            </video>
+            
+            <p class="media-caption">Video giới thiệu trang web</p>
+        </div>
+
+        <hr class="media-divider">
+
+        <div class="media-item">
+            <h3>🎵 Audio</h3>
+            <div class="audio-wrapper">
+                <audio controls>
+                    <source src="tram.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+            <p class="media-caption">Bài hát truyền thống của 12A1.</p>
+        </div>
+    </div>
+</div>
+    </main>
+</body>
+</html>
+
